@@ -9,6 +9,20 @@
     "astro": "astro"
   },
   "dependencies": {
-    "astro": "^5.14.4"
+    "@astrojs/react": "^4.4.0",
+    "@tailwindcss/vite": "^4.1.14",
+    "@tanstack/react-router": "^1.132.47",
+    "@tanstack/react-start": "^1.132.52",
+    "@tanstack/router-devtools": "^1.132.51",
+    "@types/react": "^19.2.2",
+    "@types/react-dom": "^19.2.1",
+    "astro": "^5.14.4",
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0",
+    "tailwindcss": "^4.1.14",
+    "vite-tsconfig-paths": "^5.1.4"
+  },
+  "devDependencies": {
+    "@tanstack/router-plugin": "^1.132.51"
   }
 }

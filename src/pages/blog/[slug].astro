@@ -1,0 +1,54 @@
+---
+const { slug } = Astro.params;
+
+type Post = {
+  title: string;
+  content: string;
+  date: string;
+};
+
+const posts: Record<string, Post> = {
+  'hello-world': {
+    title: 'Hello World',
+    content: 'This is my first blog post!',
+    date: '2024-01-15'
+  },
+  'typescript-tips': {
+    title: 'TypeScript Tips',
+    content: 'Here are some useful TypeScript tips...',
+    date: '2024-01-20'
+  }
+};
+
+const post = posts[slug as string];
+
+if (!post) {
+  return Astro.redirect('/404');
+}
+---
+
+<html>
+  <head>
+    <title>{post.title}</title>
+  </head>
+  <body>
+    <h1>{post.title}</h1>
+    <p>{post.date}</p>
+    <div>{post.content}</div>
+  </body>
+</html>
+
+<!-- pages/blog/[slug].astro -->
+
+<!-- Content-heavy pages:
+Blog posts: /posts/[slug].astro
+Products: /products/[id].astro
+User profiles: /users/[username].astro
+Documentation: /docs/[...path].astro
+
+Use cases:
+
+You have many similar pages (100+ blog posts)
+Content comes from a CMS/database
+You don't want to create a file for each item 
+-->

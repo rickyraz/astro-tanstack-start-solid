@@ -1,0 +1,188 @@
+---
+
+// type Product = {
+//   name: string;
+//   price: number;
+//   description: string;
+//   specs: string[];
+//   theme: string;
+//   accentColor: string;
+//   layout: string;
+// };
+
+// export async function getStaticPaths() {
+//   return [
+//     {
+//       params: { pid: 'laptop' },
+//       props: {
+//         name: 'Gaming Laptop',
+//         price: 1200,
+//         description: 'High-performance gaming machine with RTX graphics',
+//         specs: ['32GB RAM', 'RTX 4080', '1TB SSD'],
+//         theme: 'dark',
+//         accentColor: '#ff6b6b',
+//         layout: 'grid'
+//       }
+//     },
+//     {
+//       params: { pid: 'phone' },
+//       props: {
+//         name: 'Smartphone',
+//         price: 800,
+//         description: 'Latest flagship phone with AI camera',
+//         specs: ['6.7" Display', '256GB Storage', '5G'],
+//         theme: 'light',
+//         accentColor: '#4ecdc4',
+//         layout: 'minimal'
+//       }
+//     }
+//   ];
+// }
+
+// const { pid } = Astro.params;
+// const { name, price, description, specs, theme, accentColor, layout } = Astro.props as Product;
+
+// console.log("test", Astro.props);
+
+type Product = {
+  name: string;
+  price: number;
+  description: string;
+  specs: string[];
+  theme: string;
+  accentColor: string;
+  layout: string;
+};
+
+const products: Record<string, Product> = {
+  'laptop': {
+    name: 'Gaming Laptop',
+    price: 1200,
+    description: 'High-performance gaming machine with RTX graphics',
+    specs: ['32GB RAM', 'RTX 4080', '1TB SSD'],
+    theme: 'dark',
+    accentColor: '#ff6b6b',
+    layout: 'grid'
+  },
+  'phone': {
+    name: 'Smartphone',
+    price: 800,
+    description: 'Latest flagship phone with AI camera',
+    specs: ['6.7" Display', '256GB Storage', '5G'],
+    theme: 'light',
+    accentColor: '#4ecdc4',
+    layout: 'minimal'
+  }
+};
+
+const { pid } = Astro.params;
+const product = products[pid as string];
+
+if (!product) {
+  return Astro.redirect('/404');
+}
+
+const { name, price, description, specs, theme, accentColor, layout } = product;
+
+---
+
+<html data-theme={theme}>
+  <head>
+    <title>{name}</title>
+    <style define:vars={{ accentColor }}>
+      body {
+        margin: 0;
+        font-family: system-ui;
+        min-height: 100vh;
+        padding: 2rem;
+      }
+
+      [data-theme="dark"] {
+        background: #1a1a1a;
+        color: #fff;
+      }
+
+      [data-theme="light"] {
+        background: #f5f5f5;
+        color: #333;
+      }
+
+      .product-title {
+        color: var(--accentColor);
+        font-size: 3rem;
+        margin-bottom: 1rem;
+      }
+
+      .price {
+        font-size: 2.5rem;
+        font-weight: bold;
+        color: var(--accentColor);
+      }
+
+      /* Grid layout - 2 columns */
+      .layout-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 3rem;
+        max-width: 1200px;
+      }
+
+      .layout-grid .specs {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
+      }
+
+      .layout-grid .spec-item {
+        background: rgba(255, 107, 107, 0.1);
+        padding: 1.5rem;
+        border-radius: 8px;
+        border-left: 4px solid var(--accentColor);
+      }
+
+      /* Minimal layout - centered single column */
+      .layout-minimal {
+        max-width: 500px;
+        margin: 0 auto;
+        text-align: center;
+      }
+
+      .layout-minimal .specs {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+        margin-top: 2rem;
+      }
+
+      .layout-minimal .spec-item {
+        background: rgba(78, 205, 196, 0.1);
+        padding: 1rem;
+        border-radius: 20px;
+      }
+
+      .product-id {
+        opacity: 0.5;
+        font-size: 0.85rem;
+        margin-top: 0.5rem;
+      }
+    </style>
+  </head>
+  <body>
+    <div class={`layout-${layout}`}>
+      <div>
+        <h1 class="product-title">{name}</h1>
+        <p class="product-id">ID: {pid}</p>
+        <p class="price">${price}</p>
+        <p>{description}</p>
+      </div>
+
+      <div class="specs">
+        {specs?.map(spec => (
+          <div class="spec-item">{spec}</div>
+        ))}
+      </div>
+    </div>
+  </body>
+</html>
+
+<!-- pages/products/[pid].astro -->
