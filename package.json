@@ -8,18 +8,24 @@
     "preview": "astro preview",
     "astro": "astro"
   },
+  "overrides": {
+    "vite": "^7.1.10"
+  },
   "dependencies": {
     "@astrojs/react": "^4.4.0",
+    "@astrojs/solid-js": "^5.1.1",
     "@tailwindcss/vite": "^4.1.14",
-    "@tanstack/react-router": "^1.132.47",
-    "@tanstack/react-start": "^1.132.52",
-    "@tanstack/router-devtools": "^1.132.51",
+    "@tanstack/solid-router": "^1.133.15",
+    "@tanstack/solid-router-devtools": "^1.133.15",
+    "@tanstack/solid-start": "^1.133.15",
     "@types/react": "^19.2.2",
     "@types/react-dom": "^19.2.1",
     "astro": "^5.14.4",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
+    "solid-js": "^1.9.9",
     "tailwindcss": "^4.1.14",
+    "vite-plugin-solid": "^2.11.9",
     "vite-tsconfig-paths": "^5.1.4"
   },
   "devDependencies": {
