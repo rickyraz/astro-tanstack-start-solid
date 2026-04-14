@@ -12,23 +12,23 @@
     "vite": "^7.1.10"
   },
   "dependencies": {
-    "@astrojs/react": "^4.4.0",
-    "@astrojs/solid-js": "^5.1.1",
-    "@tailwindcss/vite": "^4.1.14",
-    "@tanstack/solid-router": "^1.133.15",
-    "@tanstack/solid-router-devtools": "^1.133.15",
-    "@tanstack/solid-start": "^1.133.15",
-    "@types/react": "^19.2.2",
-    "@types/react-dom": "^19.2.1",
-    "astro": "^5.14.4",
-    "react": "^19.2.0",
-    "react-dom": "^19.2.0",
-    "solid-js": "^1.9.9",
-    "tailwindcss": "^4.1.14",
-    "vite-plugin-solid": "^2.11.9",
-    "vite-tsconfig-paths": "^5.1.4"
+    "@astrojs/react": "^5.0.3",
+    "@astrojs/solid-js": "^6.0.1",
+    "@tailwindcss/vite": "^4.2.2",
+    "@tanstack/solid-router": "^1.168.19",
+    "@tanstack/solid-router-devtools": "^1.166.13",
+    "@tanstack/solid-start": "^1.167.35",
+    "@types/react": "^19.2.14",
+    "@types/react-dom": "^19.2.3",
+    "astro": "^6.1.6",
+    "react": "^19.2.5",
+    "react-dom": "^19.2.5",
+    "solid-js": "^1.9.12",
+    "tailwindcss": "^4.2.2",
+    "vite-plugin-solid": "^2.11.12",
+    "vite-tsconfig-paths": "^6.1.1"
   },
   "devDependencies": {
-    "@tanstack/router-plugin": "^1.132.51"
+    "@tanstack/router-plugin": "^1.167.22"
   }
 }
