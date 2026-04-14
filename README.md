@@ -1,46 +1,63 @@
-# Astro Starter Kit: Basics
+# Astro + TanStack Start (Solid) Web API Bridge Template
 
-```sh
-bun create astro@latest -- --template basics
-```
+This template is a starter for integrating **two ecosystems**:
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+1. **Astro** as the host app and SSR entrypoint.
+2. **TanStack Start (Solid Router)** as the app layer for routing and UI.
 
-## 🚀 Project Structure
+Both are connected through a **Web API bridge** in `src/pages/[...slug].ts`, which forwards all requests to the TanStack Start server handler.
 
-Inside of your Astro project, you'll see the following folders and files:
+## How The Integration Works
+
+Request flow:
+
+1. A request enters the Astro server.
+2. Astro catches it with the catch-all route in `src/pages/[...slug].ts`.
+3. The `ALL()` function forwards the request to `handler.fetch(request)` from TanStack Start.
+4. TanStack Start handles routing/data and returns the response to the client.
+
+This approach lets you combine Astro's hosting/SSR capabilities with the TanStack Start ecosystem in a single project.
+
+## Key Structure
 
 ```text
-/
-├── public/
-│   └── favicon.svg
-├── src
-│   ├── assets
-│   │   └── astro.svg
-│   ├── components
-│   │   └── Welcome.astro
-│   ├── layouts
-│   │   └── Layout.astro
-│   └── pages
-│       └── index.astro
-└── package.json
+src/
+  app/
+    routes/              # TanStack Start (Solid) routes
+    router.tsx           # TanStack router setup
+    routeTree.gen.ts     # Generated route tree
+  pages/
+    [...slug].ts         # Astro -> TanStack Start Web API bridge
 ```
 
-To learn more about the folder structure of an Astro project, refer to [our guide on project structure](https://docs.astro.build/en/basics/project-structure/).
+## Run The Project
 
-## 🧞 Commands
+```bash
+bun install
+bun dev
+```
 
-All commands are run from the root of the project, from a terminal:
+The app runs at `http://localhost:42322` (see `astro.config.ts`).
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `bun install`             | Installs dependencies                            |
-| `bun dev`             | Starts local dev server at `localhost:4321`      |
-| `bun build`           | Build your production site to `./dist/`          |
-| `bun preview`         | Preview your build locally, before deploying     |
-| `bun astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `bun astro -- --help` | Get help using the Astro CLI                     |
+## Production Build
 
-## 👀 Want to learn more?
+```bash
+bun build
+bun preview
+```
 
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+## Main Stack
+
+- Astro 5
+- TanStack Start + Solid Router
+- SolidJS
+- Tailwind CSS 4
+- Vite
+
+## When To Use This Template
+
+This template is a good fit when you want to:
+
+- use Astro as the host/server framework,
+- keep TanStack Start's routing and app runtime patterns,
+- build a cross-ecosystem architecture with a simple Web API integration layer.
